@@ -6,17 +6,22 @@ public class Raycast : MonoBehaviour
 {
     public float range = 10000;
     public Camera cam;
+    public int gun = 0;
+    public List<int> guns = new List<int>() {1,5,10};
+    public float firerate = 10;
+    private float nt = 0f;
     void Start()
     {
-        
+        Debug.Log(guns[0]);
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && Time.time > nt)
         {
+            nt = Time.time + firerate;
             Shoot();
         }
         
@@ -28,7 +33,15 @@ public class Raycast : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * range, Color.yellow);
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log(hit.collider);
+            if (hit.collider.name != "земля")
+            {
+                Debug.Log(hit.collider.name);
+                hit.collider.GetComponent<HP>().hp -= guns[gun];
+                if (hit.collider.GetComponent<HP>().hp <= 0)
+                {
+                    hit.collider.gameObject.SetActive(false);
+                }
+            }
         }
     }
 }
