@@ -12,7 +12,6 @@ public class Raycast : MonoBehaviour
     private float nt = 0f;
     void Start()
     {
-        Debug.Log(guns[0]);
     }
 
     // Update is called once per frame

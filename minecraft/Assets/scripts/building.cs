@@ -36,58 +36,72 @@ public class building : MonoBehaviour
     {
         if (Input.GetAxis("Mouse ScrollWheel") != 0.0f)
         {
-            selectSlot[curIndex].SetActive(false);
-            curIndex += Mathf.RoundToInt(Input.GetAxis("Mouse ScrollWheel"));
-            if (curIndex > Cubes.Count - 1)
+            if (selectSlot.Count == 7)
             {
-                curIndex = 0;
+                selectSlot[curIndex].SetActive(false);
+             
+                curIndex += Mathf.RoundToInt(Input.GetAxis("Mouse ScrollWheel"));
+                if (curIndex > Cubes.Count - 1)
+                {
+                    curIndex = 0;
+                }
+                else if (curIndex < 0)
+                {
+                    curIndex = Cubes.Count - 1;
+                }
+                selectSlot[curIndex].SetActive(true);
+               
             }
-            else if (curIndex < 0)
-            {
-                curIndex = Cubes.Count - 1;
-            }
-            selectSlot[curIndex].SetActive(true);
         }
-
 
         p_ray = m_Camera.ScreenPointToRay(p_rayDirection);
         if (Physics.Raycast(p_ray, out p_hit) && p_hit.collider != null)
         {
-            if (p_hit.collider.tag == "Ground")
+            
+            if (p_hit.collider.tag == "Cube")
             {
                 //Prefab.transform.position = p_hit.collider.transform.position;
                 //Prefab.SetActive(true);
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (p_hit.collider.transform.position.x - p_hit.point.x >= 0.5f)
+                    if (Cubes.Count > 0)
                     {
-                        var pos = new Vector3(p_hit.collider.transform.position.x - 1.0f, p_hit.collider.transform.position.y, p_hit.collider.transform.position.z);
-                        Instantiate(Cubes[curIndex], pos, Quaternion.identity);
-                    }
-                    else if (p_hit.collider.transform.position.x - p_hit.point.x <= -0.49f)
-                    {
-                        var pos = new Vector3(p_hit.collider.transform.position.x + 1.0f, p_hit.collider.transform.position.y, p_hit.collider.transform.position.z);
-                        Instantiate(Cubes[curIndex], pos, Quaternion.identity);
-                    }
-                    else if (p_hit.collider.transform.position.y - p_hit.point.y >= 0.5f)
-                    {
-                        var pos = new Vector3(p_hit.collider.transform.position.x, p_hit.collider.transform.position.y - 1.0f, p_hit.collider.transform.position.z);
-                        Instantiate(Cubes[curIndex], pos, Quaternion.identity);
-                    }
-                    else if (p_hit.collider.transform.position.y - p_hit.point.y <= -0.5f)
-                    {
-                        var pos = new Vector3(p_hit.collider.transform.position.x, p_hit.collider.transform.position.y + 1.0f, p_hit.collider.transform.position.z);
-                        Instantiate(Cubes[curIndex], pos, Quaternion.identity);
-                    }
-                    else if (p_hit.collider.transform.position.z - p_hit.point.z >= 0.5f)
-                    {
-                        var pos = new Vector3(p_hit.collider.transform.position.x, p_hit.collider.transform.position.y, p_hit.collider.transform.position.z - 1.0f);
-                        Instantiate(Cubes[curIndex], pos, Quaternion.identity);
-                    }
-                    else if (p_hit.collider.transform.position.z - p_hit.point.z <= -0.5f)
-                    {
-                        var pos = new Vector3(p_hit.collider.transform.position.x, p_hit.collider.transform.position.y, p_hit.collider.transform.position.z + 1.0f);
-                        Instantiate(Cubes[curIndex], pos, Quaternion.identity);
+                        if (p_hit.collider.transform.position.x - p_hit.point.x >= 0.5f)
+                        {
+                            var pos = new Vector3(p_hit.collider.transform.position.x - 10.0f, p_hit.collider.transform.position.y, p_hit.collider.transform.position.z);
+                            Instantiate(Cubes[curIndex], pos, Quaternion.identity);
+
+                        }
+                        else if (p_hit.collider.transform.position.x - p_hit.point.x <= -0.5f)
+                        {
+                            var pos = new Vector3(p_hit.collider.transform.position.x + 10.0f, p_hit.collider.transform.position.y, p_hit.collider.transform.position.z);
+                            Instantiate(Cubes[curIndex], pos, Quaternion.identity);
+                            
+                        }
+                        else if (p_hit.collider.transform.position.y - p_hit.point.y >= 0.5f)
+                        {
+                            var pos = new Vector3(p_hit.collider.transform.position.x, p_hit.collider.transform.position.y - 10.0f, p_hit.collider.transform.position.z);
+                            Instantiate(Cubes[curIndex], pos, Quaternion.identity);
+                           
+                        }
+                        else if (p_hit.collider.transform.position.y - p_hit.point.y <= -0.5f)
+                        {
+                            var pos = new Vector3(p_hit.collider.transform.position.x, p_hit.collider.transform.position.y + 10.0f, p_hit.collider.transform.position.z);
+                            Instantiate(Cubes[curIndex], pos, Quaternion.identity);
+                           
+                        }
+                        else if (p_hit.collider.transform.position.z - p_hit.point.z >= 0.5f)
+                        {
+                            var pos = new Vector3(p_hit.collider.transform.position.x, p_hit.collider.transform.position.y, p_hit.collider.transform.position.z - 10.0f);
+                            Instantiate(Cubes[curIndex], pos, Quaternion.identity);
+                            
+                        }
+                        else if (p_hit.collider.transform.position.z - p_hit.point.z <= -0.5f)
+                        {
+                            var pos = new Vector3(p_hit.collider.transform.position.x, p_hit.collider.transform.position.y, p_hit.collider.transform.position.z + 10.0f);
+                            Instantiate(Cubes[curIndex], pos, Quaternion.identity);
+                           
+                        }
                     }
 
                 }
