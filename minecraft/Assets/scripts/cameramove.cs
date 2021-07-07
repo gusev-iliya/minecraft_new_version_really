@@ -6,6 +6,7 @@ public class cameramove : MonoBehaviour
 {
     public float sensitivity = 3; // чувствительность мышки
     private float X, Y;
+    public Camera cam;
     void Start()
     {
 
@@ -17,6 +18,6 @@ public class cameramove : MonoBehaviour
     {
         Y += Input.GetAxis("Mouse Y") * sensitivity;
         Y = Mathf.Clamp(Y, -90, 90);
-        transform.localEulerAngles = new Vector3(-Y, 0, 0);
+        cam.transform.localEulerAngles = new Vector3(-Y, 0, 0);
     }
 }

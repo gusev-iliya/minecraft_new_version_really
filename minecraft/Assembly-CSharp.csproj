@@ -59,8 +59,10 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\scripts\currentItem.cs" />
     <Compile Include="Assets\scripts\Item.cs" />
     <Compile Include="Assets\scripts\MoveMouse.cs" />
+    <Compile Include="Assets\scripts\destroymsg.cs" />
     <Compile Include="Assets\scripts\HP.cs" />
     <Compile Include="Assets\scripts\cameramove.cs" />
     <Compile Include="Assets\scripts\Raycast.cs" />

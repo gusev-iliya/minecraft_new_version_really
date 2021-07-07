@@ -6,10 +6,11 @@ public class Item : MonoBehaviour
 {
     public string nameItem;
     public int id;
-    public int countItem;
+    public int countItem ;
     public bool isStackable;
-    [Multiline(5)]
+    [Multiline(1)]
     public string descriptionItem;
     public string pathIcon;
     public string pathPrefab;
+    public GameObject prefab;
 }
